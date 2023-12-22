@@ -15,14 +15,12 @@ export class App {
     }
 
     start() {
-        console.log(this.app.ticker.add);
-       
-        this.app.ticker.add(() => {
-            TWEEN.update();
-        });
-
         this.scene = new MainScene();
         this.app.stage.addChild(this.scene.container);
 
+        this.app.ticker.add(dt => {
+            // TWEEN.update();
+            this.scene.update(dt);
+        });
     }
 }
