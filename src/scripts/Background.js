@@ -25,16 +25,28 @@ export class Background {
     }
 
     move(sprite, offset) {
+        // 'spriteRightX' değişkeni, sprite'ın sağ kenarının x koordinatını hesaplar.
+        // Bu, sprite'ın sol kenarının x koordinatı ('sprite.x') ile genişliğinin ('sprite.width') toplamıdır.
         const spriteRightX = sprite.x + sprite.width;
-
+    
+        // 'screenLeftX' değişkeni, ekranın sol kenarının x koordinatını temsil eder.
+        // Bu örnek için 0 olarak ayarlanmıştır, yani ekranın sol kenarı.
         const screenLeftX  = 0;
-
+    
+        // Bu if bloğu, sprite'ın sağ kenarı ekranın sol kenarını geçip geçmediğini kontrol eder.
+        // Eğer geçtiyse, yani 'spriteRightX' değeri 'screenLeftX' değerinden küçük veya eşitse,
+        // sprite'ı ekranın sağ tarafına taşımak için sprite'ın x konumunu ayarlar.
         if (spriteRightX <= screenLeftX) {
+            // sprite'ın x konumunu, sprite genişliğinin ve oluşturulan toplam sprite sayısının
+            // çarpımı kadar artırır. Bu, sprite'ı ekranın sağ tarafına taşır.
             sprite.x += sprite.width * this.sprites.length;
         }
         
+        // sprite'ın x konumundan 'offset' değerini çıkararak, sprite'ı sola doğru hareket ettirir.
+        // 'offset' değeri, bu metodun çağrıldığında ne kadar sola hareket edeceğini belirler.
         sprite.x -= offset;
     }
+    
 
     update(dt) {
         const offset = this.speed * dt;
